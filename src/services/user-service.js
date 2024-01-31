@@ -7,6 +7,8 @@ class UserService {
             email,
             password
         })
+        
+        console.log("olha o id aquiii: " + id);
 
         return { id }
     }

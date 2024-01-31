@@ -41,26 +41,15 @@ describe("UserController", () => {
 
   it(`should return status "200" and id generated`, async () => {
     const spy = jest.spyOn(UserService, "createUser");
-    spy.mockReturnValue(1);
+    spy.mockReturnValue( { id: "1" } );
     await UserController.create(reqMock3, resMock);
 
-    expect(resMock.json).toHaveBeenCalledWith(JSON.stringify({ id: "1" }));
-    expect(resMock.status).toHaveBeenCalledWith(404);
-  });
-
-  /*it(`should return status "200" and "token gerado"`, async () => {
-    const spy = jest.spyOn(UserService, "userExistsAndCheckPassword");
-    const spy1 = jest.spyOn(SessionService, "generateToken");
-    spy.mockReturnValue(true);
-    spy1.mockReturnValue("Token gerado");
-    await UserController.create(reqMock3, resMock);
-
-    expect(resMock.json).toHaveBeenCalledWith({ token: "Token gerado" });
+    expect(resMock.json).toHaveBeenCalledWith({ id: "1" });
     expect(resMock.status).toHaveBeenCalledWith(200);
   });
 
   it(`should return status "500"`, async () => {
-    const spy = jest.spyOn(UserService, "userExistsAndCheckPassword");
+    const spy = jest.spyOn(UserService, "createUser");
     spy.mockImplementation(() => {
       throw new Error("Erro no servidor");
     });
@@ -69,5 +58,14 @@ describe("UserController", () => {
 
     expect(resMock.json).toHaveBeenCalledWith("Erro no servidor");
     expect(resMock.status).toHaveBeenCalledWith(500);
-  });*/
+  });
+
+  it(`should return status "200" on changePassword`, async () => {
+
+    await UserController.changePassword(reqMock3, resMock);
+
+    expect(resMock.json).toHaveBeenCalledWith({ message: 'ok'});
+    expect(resMock.status).toHaveBeenCalledWith(200);
+  });
+
 });
