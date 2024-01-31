@@ -2,6 +2,7 @@ const SessionController = require("../../../src/controllers/session-ctrl");
 const UserController = require("../../../src/controllers/user-ctrl");
 const SessionService = require("../../../src/services/session-service");
 const UserService = require("../../../src/services/user-service");
+const User = require("../../../src/schemas/User");
 
 describe("UserController", () => {
   const resMock = {
