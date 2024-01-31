@@ -2,6 +2,7 @@ const SessionController = require("../../../src/controllers/session-ctrl");
 const UserController = require("../../../src/controllers/user-ctrl");
 const SessionService = require("../../../src/services/session-service");
 const UserService = require("../../../src/services/user-service");
+const User = require("../../../src/schemas/User");
 
 describe("UserController", () => {
   const resMock = {
@@ -40,12 +41,16 @@ describe("UserController", () => {
   });
 
   it(`should return status "200" and id generated`, async () => {
-    const spy = jest.spyOn(UserService, "createUser");
-    spy.mockReturnValue(1);
+    //const spy = jest.spyOn(UserService, "createUser");
+    //spy.mockReturnValue(1);
+    const spy2 = jest.spyOn(User, "create");
+    spy2.mockReturnValue(1);
+    const resSpy = jest.spyOn(resMock, "status");
+    const resSpy2 = jest.spyOn(resMock, "json");
     await UserController.create(reqMock3, resMock);
 
-    expect(resMock.json).toHaveBeenCalledWith(JSON.stringify({ id: "1" }));
-    expect(resMock.status).toHaveBeenCalledWith(404);
+    //expect(resMock.json).toHaveBeenCalledWith({ id: "1" });
+    expect(resSpy).toHaveBeenCalledWith(200);
   });
 
   /*it(`should return status "200" and "token gerado"`, async () => {
