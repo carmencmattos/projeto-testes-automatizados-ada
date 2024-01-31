@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { faker } = require("@faker-js/faker");
 const { cpf: cpfGenerator } = require("cpf-cnpj-validator");
 
-const UserService = require("../../../src/services/user");
+const UserService = require("../../../src/services/user-service");
 const User = require("../../../src/schemas/User");
 
 const userMock = {

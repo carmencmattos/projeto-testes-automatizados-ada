@@ -1,26 +1,15 @@
 const User = require("../schemas/User");
 
 class UserService {
-<<<<<<< HEAD
-    static async createUser({ name, email, password }) {
-        const { id } = await User.create({
-            name,
-            email,
-            password
-        })
-        
-        console.log("olha o id aquiii: " + id);
-=======
   static async createUser({ name, email, password }) {
     const { id } = await User.create({
       name,
       email,
       password,
     });
-    console.log(id + " dentro createUser");
+    
     return { id };
   }
->>>>>>> refs/remotes/origin/main
 
   static async userExistsAndCheckPassword({ email, password }) {
     const user = await User.findOne({ email });
