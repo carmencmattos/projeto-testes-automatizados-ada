@@ -1,4 +1,6 @@
+require("dotenv").config();
 const jwt = require("../../../src/middlewares/auth");
+const SessionService = require("../../../src/services/session-service");
 
 class ResMock {
   _status;
@@ -20,5 +22,24 @@ describe("Authenticate jwt", () => {
     jwt(req, res, next);
 
     expect(res._status).toEqual(401);
+  });
+
+  it("should call the next fuction ", () => {
+   
+    const token = SessionService.generateToken({
+      email: "carol@gmail.com",
+    });
+    const req = {
+      headers: {
+        authorization: token,
+        
+      },
+    };
+    const res = new ResMock();
+    const next = () => {};
+    const spy = jest.spyOn(res, "status")
+    jwt(req, res, next);
+
+    expect(spy).not.toHaveBeenCalled();
   });
 });
