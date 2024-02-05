@@ -6,11 +6,8 @@ const mockedEmail = { email: "test@example.com" };
 const mockedSecret = "security-secret";
 
 describe("SessionService", () => {
-  const spy = jest.spyOn(SessionService, "generateToken");
-  spy.mockReturnValue(
-    jwt.sign(mockedEmail, mockedSecret, { expiresIn: "30s" })
-  );
-  
+  jest.spyOn(SessionService, "generateToken");
+
   it("should generate a valid JWT token", () => {
     const token = SessionService.generateToken(mockedEmail.email);
 
