@@ -3,7 +3,7 @@
 
 ## ⏳ Status do Projeto
 
-![](https://img.shields.io/static/v1?label=Status&message=Em%20Desenvolvimento&color=informational)
+![](https://img.shields.io/static/v1?label=Status&message=%20Concluído&color=informational)
 
 
 ## 🗒️ Descrição
